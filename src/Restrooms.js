@@ -3,23 +3,7 @@ import Restroom from "./Restroom"
 import App from "./App"
 
 
-// let restrooms =
-// [{
-//   name: "Cafe Mochi",
-//   id: 1
-// },
-// {
-//   name: "The Vine",
-//   id: 2
-// },
-// { 
-//  name: "CBGB",
-//  id: 3
-// }
-// ]
-
-
-let restrooms =
+const restrooms =
 [{
   name: "Cafe Mochi",
   id: 1
@@ -33,15 +17,14 @@ let restrooms =
  id: 3
 }
 ]
-  
-
-
 
 class Restrooms extends React.Component {
     constructor(props){
         super(props);
         this.state = {
           search: '',
+          restrooms: [],
+          restroom: this.props.restroom
         
         };
     
@@ -51,11 +34,10 @@ class Restrooms extends React.Component {
         this.setState({search: event.target.value});
       }
 
-
   render() {
-    let filteredRestrooms= this.props.restrooms.filter
+    let filteredRestrooms= restrooms.filter
         ((restroom) => {
-          return restroom.name.indexOf(this.state.search) !== -1;
+          return restroom.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
          }
         );
       return (
